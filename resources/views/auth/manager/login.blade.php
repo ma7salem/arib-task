@@ -3,7 +3,7 @@
 
 @section('content')
 
-<main class="login-form">
+<main>
     <div class="cotainer">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -13,9 +13,9 @@
                         <form action="{{route('login.post')}}" method="post">
                             @csrf
                             <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">Email Or Phone</label>
+                                <label for="auth" class="col-md-4 col-form-label text-md-right">Email Or Phone</label>
                                 <div class="col-md-6">
-                                    <input type="text" id="email_address" class="form-control" name="auth" value="{{old('auth')}}" required autofocus>
+                                    <input type="text" id="auth" class="form-control" name="auth" value="{{old('auth')}}" required autofocus>
                                     @if($errors->has('auth'))
                                         <div class="alert alert-danger"> {{ $errors->first('auth') }}</div>
                                     @endif

@@ -13,7 +13,7 @@
                     <a class="nav-link" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('login')}}">Departments</a>
+                    <a class="nav-link" href="{{route('departments.index')}}">Departments</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

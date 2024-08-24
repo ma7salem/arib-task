@@ -3,15 +3,24 @@
 
 @section('content')
 
-<main class="login-form">
+<main>
     <div class="cotainer">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Departments</div>
                         <div class="card-body">
+                            <a href="{{route('departments.create')}}" class="btn btn-success mb-2">Create</a>
+                           @include('manager.layouts.partiels.alert')
                             <table class="table table-striped">
                                 <thead>
+                                    <tr>
+                                        <th colspan="4">
+                                            <form action="{{route('departments.index')}}" method="get">
+                                                <input type="text" name="name" class="form-control" value="{{ request()->name }}" placeholder="Search By Name...">
+                                            </form>
+                                        </th>
+                                    </tr>
                                     <tr>
                                         <th>Name</th>
                                         <th>Emp.Count</th>
@@ -20,17 +29,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($departments as $k => $department)
                                     <tr>
-                                        <td>Name</td>
+                                        <td>{{ $department->name }}</td>
                                         <td>1</td>
                                         <td>100</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
+                                            <a href="{{route('departments.edit', $department->id)}}" class="btn btn-primary">Edit</a>
+                                            @if($department->canBeDeleted())
+                                            <form action="{{ route('departments.destroy', $department->id) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                            @else
+                                            <a href="#" onclick="event.preventDefault(); alert('This department can not be deleted.');" class="btn btn-danger">Delete</a>
+                                            @endif
                                         </td>
                                     </tr>
+                                    @empty
+                                    <tr>
+                                        <th colspan="4" class="text-center">
+                                            No Data Found!
+                                        </th>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                            {{ $departments->links() }}
                         </div>
                     </div>
                 </div>
