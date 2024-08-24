@@ -11,7 +11,7 @@ class DepartmentController extends Controller
 {
     public function index(Request $request)
     {
-        $departments = Department::search($request->name)->latest()->paginate(20);
+        $departments = Department::search($request->name)->withCount(['employees'])->withSum('employees', 'salary')->latest()->paginate(20);
         return view('manager.departments.index', compact('departments'));
     }
 

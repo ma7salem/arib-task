@@ -43,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class);    
+    }
+
+    public function employees()
+    {
+        return $this->hasManyThrough(Employee::class, Department::class);   
+    }
 }

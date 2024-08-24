@@ -32,8 +32,8 @@
                                     @forelse($departments as $k => $department)
                                     <tr>
                                         <td>{{ $department->name }}</td>
-                                        <td>1</td>
-                                        <td>100</td>
+                                        <td>{{$department->employees_count}}</td>
+                                        <td>{{ $department->employees_sum_salary ? $department->employees_sum_salary . ' EGP' : '0 EGP' }}</td>
                                         <td>
                                             <a href="{{route('departments.edit', $department->id)}}" class="btn btn-primary">Edit</a>
                                             @if($department->canBeDeleted())
