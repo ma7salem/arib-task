@@ -16,6 +16,12 @@
                     <a class="nav-link" href="{{route('departments.index')}}">Departments</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route('employees.index')}}">Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('tasks.index')}}">Tasks</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                 </li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

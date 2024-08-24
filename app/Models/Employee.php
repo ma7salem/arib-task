@@ -35,10 +35,21 @@ class Employee extends Authenticatable
     {
         return $this->belongsTo(Department::class);    
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);    
+    }
     
     public function getFullNameAttribute()
     {
         return $this->first_name .  ' ' . $this->last_name; 
+    }
+
+    public function getImagePathAttribute()
+    {
+        $image = $this->image;
+        return !$image || !file_exists(public_path($image)) ? url('default.png') : url($image);
     }
 
     public function scopeSearch($query, $data)

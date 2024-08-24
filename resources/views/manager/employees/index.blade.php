@@ -51,6 +51,7 @@
                                         <td>{{ $employee->salary . ' EGP' }}</td>
                                         <td>{{$employee->department?->user?->name}}</td>
                                         <td>
+                                            <a href="{{route('tasks.create', ['emp' => $employee->id])}}" class="btn btn-secondary">Assign Task</a>
                                             <a href="{{route('employees.edit', $employee->id)}}" class="btn btn-primary">Edit</a>
                                             <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
